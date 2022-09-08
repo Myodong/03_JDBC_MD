@@ -36,6 +36,7 @@ public class EmployeeView {
 			System.out.println("7. 입력 받은 급여 이상을 받는 모든 사원 정보 조회");
 			System.out.println("8. 부서별 급여 합 전체 조회");
 			System.out.println("9. 주민번호가 일치하는 사원 정보 조회");
+			System.out.println("10. 직급별 급여 평균 조회");
 			System.out.println("0. 프로그램 종료");
 			
 			System.out.print("메뉴 선택 >> ");
@@ -44,16 +45,17 @@ public class EmployeeView {
 			System.out.println();
 			
 			switch (input) {
-			case 1: insertEmployee(); break;
-			case 2: selectAll(); break;
-			case 3: selectEmpId(); break;
-			case 4: updateEmployee(); break;
-			case 5: deleteEmployee(); break;
-			case 6: break;
-			case 7: break;
-			case 8: break;
-			case 9: selectEmpNO(); break;
-			case 0: System.out.println("프로그램을 종료합니다."); break;
+			case  1: insertEmployee(); break;
+			case  2: selectAll(); break;
+			case  3: selectEmpId(); break;
+			case  4: updateEmployee(); break;
+			case  5: deleteEmployee(); break;
+			case  6: selectDeptTitle(); break;
+			case  7: selectSalaryEmp(); break;
+			case  8: selectDeptTitleSalary(); break;
+			case  9: selectEmpNO(); break;
+			case 10:  break;
+			case  0: System.out.println("프로그램을 종료합니다."); break;
 			default: System.out.println("메뉴에 존재하는 번호만 입력하세요.");
 			}
 			
@@ -160,7 +162,7 @@ public class EmployeeView {
 	
 	
 	/**
-	 * 주민번호가 일치하는 사원정보 조회
+	 * 9.주민번호가 일치하는 사원정보 조회
 	 */
 	public void selectEmpNO() {
 		System.out.println("<주민번호가 일치하는 사원정보 조회>");
@@ -175,7 +177,7 @@ public class EmployeeView {
 	
 	
 	/**
-	 * 사원 정보 추가
+	 * 1.사원 정보 추가
 	 */
 	public void insertEmployee() {
 		System.out.println("<사원 정보 추가>");
@@ -233,7 +235,7 @@ public class EmployeeView {
 	
 	
 	/**
-	 * 사번이 일치하는 사원 정보 수정(이메일, 전화번호, 급여)
+	 * 4.사번이 일치하는 사원 정보 수정(이메일, 전화번호, 급여)
 	 */
 	public void updateEmployee() {
 		System.out.println("<사번이 일치하는 사원 정보 수정>");
@@ -266,7 +268,7 @@ public class EmployeeView {
 	}
 	
 	/**
-	 * 사번이 일치하는 사원 정보 삭제
+	 * 5.사번이 일치하는 사원 정보 삭제
 	 */
 	public void deleteEmployee() {
 		System.out.println("<사번이 일치하는 사원 정보 삭제>");
@@ -296,16 +298,45 @@ public class EmployeeView {
 		} else {
 			System.out.println("취소 되었습니다.");
 		}
-													  
 		
+	}
+	
+	
+	/**
+	 * 6.입력 받은 부서와 일치 모든 사원 정보 조회
+	 */
+	public void selectDeptTitle() {
+		System.out.println("<입력 받은 부서와 일치 모든 사원 정보 조회>");
+		System.out.println("부서 : ");
+		String departmentTitle = sc.next();
+
+		printAll(dao.setDepartmentTitle(departmentTitle));
+	}
+
+	
+	/**
+	 * 7.입력 받은 급여 이상을 받는 모든 사원 정보 조회
+	 */
+	public void selectSalaryEmp() {
+		System.out.println("<입력 받은 급여 이상을 받는 모든 사원 정보 조회>");
 		
+		System.out.print("급여 : ");
+		int salary = sc.nextInt();
 		
+		printAll(dao.selectSalaryEmp(salary));
+	}
+	
+	
+	/**
+	 * 8.부서별 급여 합 전체 조회
+	 */
+	public void selectDeptTitleSalary() {
+		System.out.println("<부서별 급여 합 전체 조회>");
 		
 		
 		
 		
 	}
-	
 	
 	
 	
