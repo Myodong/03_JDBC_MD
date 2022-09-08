@@ -328,7 +328,7 @@ public class EmployeeView {
 	
 	
 	/**
-	 * 8.부서별 급여 합 전체 조회
+	 * 8.부서별 급여 합 전체 조회(아직못풀음)
 	 */
 	public void selectDeptTitleSalary() {
 		System.out.println("<부서별 급여 합 전체 조회>");
