@@ -40,8 +40,4 @@ public class TestVO {
 		public String toString() {
 			return "TestVO [testNo=" + testNo + ", testTitle=" + testTitle + ", testContent=" + testContent + "]";
 		}
-	
-
-		
-	
 }
