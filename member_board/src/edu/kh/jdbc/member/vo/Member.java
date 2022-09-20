@@ -16,6 +16,21 @@ public class Member {
 	// 기본 생성자
 	public Member() { }
 
+	
+	
+	
+	
+	public Member(String memberId, String memberName, String memberGender) {
+		super();
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.memberGender = memberGender;
+	}
+
+
+
+
+
 	public Member(String memberId, String memberPw, String memberName, String memberGender) {
 		super();
 		this.memberId = memberId;
