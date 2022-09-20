@@ -88,7 +88,7 @@ public class MemberView {
 		System.out.println("회원 번호 : "	+ loginMember.getMemberNo());
 		System.out.println("아이디 : "		+ loginMember.getMemberId());
 		System.out.println("이름 : "		+ loginMember.getMemberName());
-		System.out.println("성별 :");
+		System.out.print("성별 : ");
 		if (loginMember.getMemberGender().equals("M")) {
 			System.out.println("남");
 		} else {
