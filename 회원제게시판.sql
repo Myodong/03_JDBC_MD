@@ -289,6 +289,36 @@ COMMIT;
 
 
 
+-- 댓글 수정
+UPDATE "COMMENT" SET
+COMMENT_CONTENT = ?
+WHERE COMMENT_NO = ?;
+
+-- 댓글 삭제
+UPDATE "COMMENT" SET
+DELETE_FL = 'Y'
+WHERE COMMENT_NO = ?;
+
+-- 게시글 수정
+UPDATE BOARD SET
+BOARD_TITLE = ?,
+BOARD_CONTENT = ?
+WHERE BOARD_NO = ? ;
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

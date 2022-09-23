@@ -82,14 +82,35 @@ public class BoardService {
 				board.setReadCount(board.getReadCount()+1);
 				
 				} else rollback(conn);
-				
 			}
 		} 
-		
-		
 		close(conn);
 		
 		return board;
+	}
+
+
+
+
+
+
+	/** 게시글 수정 서비스
+	 * @param board
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateBoard(Board board)throws Exception {
+		
+		Connection conn = getConnection();
+
+		int result = dao.updateBoard(conn,board);
+		
+		if (result > 0) commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
 	}
 	
 	
