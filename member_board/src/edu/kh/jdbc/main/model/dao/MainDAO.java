@@ -147,7 +147,7 @@ public class MainDAO {
 //				loginMember.setMemberId    ( memberId  );
 //				loginMember.setMemberName  ( rs.getString("MEMBER_NM") );
 //				loginMember.setMemberGender( rs.getString("MEMBER_GENDER") );
-//				loginMember.setEnrollDate  ( rs.getString("ENROLL_DATE") );
+//			loginMember.setEnrollDate  ( rs.getString("ENROLL_DATE") );
 				
 				loginMember = new Member(rs.getInt("MEMBER_NO"), 
 										 memberId,
