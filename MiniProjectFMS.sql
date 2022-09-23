@@ -39,3 +39,36 @@ VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user03','pass03','유저삼','020115-1023456',010
 SELECT * FROM FMS_MEMBER; 
 
 COMMIT;
+-------------------------------------------------------------------------------
+
+-- 회원가입
+INSERT INTO FMS_MEMBER
+VALUES(SEQ_MEMBER_NO.NEXTVAL, ?,?,?,'?',?,'?','?',DEFAULT);
+
+
+-- 아이디 중복검사
+SELECT COUNT(*) FROM FMS_MEMBER
+WHERE MEMBER_ID = ?
+
+
+---------------------------------------------------------------------------------
+-- Client TABLE --
+
+CREATE  TABLE FMS_MEMBER(
+	MEMBER_NO NUMBER PRIMARY KEY, 
+	MEMBER_ID VARCHAR(30) NOT NULL,
+	MEMBER_PW VARCHAR(30) NOT NULL,
+	MEMBER_NM VARCHAR(30) NOT NULL,
+	MEMBER_SSN VARCHAR2(14) NOT NULL,
+	MEMBER_PHO VARCHAR2(12) NOT NULL,
+	MEMBER_ADDRESS VARCHAR2(100) NOT NULL,
+	MEMBER_STORE VARCHAR2(100) NOT NULL,
+	ENROLL_DATE DATE DEFAULT SYSDATE
+);
+
+
+
+
+
+
+

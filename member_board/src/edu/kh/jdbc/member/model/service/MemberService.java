@@ -13,6 +13,9 @@ public class MemberService {
 
 	private MemberDAO dao = new MemberDAO();
 
+	
+	
+	
 	/** 회원 목록 조회 서비스
 	 * @return memberList
 	 * @throws Exception
