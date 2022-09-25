@@ -17,7 +17,6 @@ public class LoginDAO {
 	private Statement stmt = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-	
 	private Properties prop = null;
 	
 	

@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>client-query.xml file</comment>
+	<comment>client-query.xml file</comment>
+
+			<!-- 주민번호 중복 검사 -->
+	<entry key="ssnCheck">
+		SELECT COUNT(*) FROM FMS_CLIENT
+		WHERE CLIENT_SSN = ?
+	</entry>
+	
+			<!-- 고객 등록 -->
+	<entry key="registration">
+	INSERT INTO FMS_CLIENT
+	VALUES(SEQ_CLIENT_NO.NEXTVAL, ?,?,?,?,DEFAULT)
+	</entry>
+
 </properties>
