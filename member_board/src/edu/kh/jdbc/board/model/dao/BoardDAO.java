@@ -237,9 +237,10 @@ public class BoardDAO {
 			String sql = prop.getProperty("insertBoard");
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, board.getBoardTitle());
-			pstmt.setString(2, board.getBoardContent());
-			pstmt.setInt(3, board.getMemberNo());
+			pstmt.setInt(1, board.getBoardNo() );// 추가
+			pstmt.setString(2, board.getBoardTitle());
+			pstmt.setString(3, board.getBoardContent());
+			pstmt.setInt(4, board.getMemberNo());
 			
 			result = pstmt.executeUpdate();
 			

@@ -513,7 +513,7 @@ public class BoardView {
 			
 			System.out.println("내용 : ");
 			String boardContent = inputContent();
-			sc.next();
+		
 			
 			// Board 객체에 제목, 내용, 회원 번호를 담아서 서비스에 전달 
 			Board board = new Board();
@@ -522,9 +522,44 @@ public class BoardView {
 			board.setMemberNo(MainView.loginMember.getMemberNo());
 			
 			int result = bService.insertBoard(board);
+			// 0 또는 생성된 게시글 번호 (0초과)
 			
 			if(result > 0) {
 				System.out.println("\n[게시글이 등록되었습니다.]\n");
+				
+				// 게시글 상세 조회 서비스 호출 후 결과 반환 받기
+				Board b = bService.selectBoard(result, MainView.loginMember.getMemberNo());
+												// 게시글번호, 로그인한 회원의 회원번호
+												// 				--> 자신의 글 조회수 증가 x
+				
+		         if (b != null) {
+		             System.out.println("--------------------------------------------------------");
+		             System.out.printf("글번호 : %d \n제목 : %s\n", b.getBoardNo(), b.getBoardTitle());
+		             System.out.printf("작성자 : %s | 작성일 : %s  \n조회수 : %d\n", 
+		                   b.getMemberName(), b.getCreateDate(), b.getReadCount());
+		             System.out.println("--------------------------------------------------------\n");
+		             System.out.println(b.getBoardContent());
+		             System.out.println("\n--------------------------------------------------------");
+
+		          
+		             // 댓글 목록
+		             if(!b.getCommentList().isEmpty()) {
+		                for(Comment c : b.getCommentList()) {
+		                   System.out.printf("댓글번호: %d   작성자: %s  작성일: %s\n%s\n",
+		                         c.getCommentNo(), c.getMemberName(), c.getCreateDate(), c.getCommentContent());
+		                   System.out.println(" --------------------------------------------------------");
+		                }
+		             }
+		             
+		             // 댓글 등록, 수정, 삭제
+		             // 수정/삭제 메뉴
+		             subBoardMenu(b);
+
+		          } else {
+		             System.out.println("[\n해당 번호의 게시글이 존재하지 않습니다.]\n");
+		          }
+				
+				
 			} else {
 				System.out.println("\n[게시글이 등록 실패]\n");
 			}
