@@ -172,6 +172,30 @@ public class BoardService {
 		
 		return result;
 	}
+
+
+
+
+
+
+	/** 게시글 검색
+	 * @param condition
+	 * @param query
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Board> searchBoard(int condition, String query)throws Exception {
+		Connection conn = getConnection();
+		
+		List<Board> boardList = dao.searchBoard(conn, condition,query);
+		
+		
+		
+		close(conn);
+		
+		
+		return boardList;
+	}
 	
 	
 	
