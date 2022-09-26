@@ -143,9 +143,9 @@ public class ClientView {
 			// 서비스 처리 결과에 따른 출력 화면 제어
 			System.out.println();
 			if (result > 0) {
-				System.out.println("[+] ---회원 가입 성공---");
+				System.out.println("[+] ---고객 등록 성공---");
 			} else {
-				System.out.println("[!] 회원 가입 실패");
+				System.out.println("[!] 고객 등록 실패");
 			}
 			System.out.println();
 			

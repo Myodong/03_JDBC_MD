@@ -43,6 +43,11 @@ public class ClientService {
 
 
 
+	/** 고객 등록 서비스
+	 * @param clientvo
+	 * @return
+	 * @throws Exception
+	 */
 	public int registration(ClientVo clientvo)throws Exception {
 		// 1. Connection 생성
 		Connection conn = getConnection();
