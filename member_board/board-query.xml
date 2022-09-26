@@ -62,6 +62,16 @@
 	WHERE BOARD_NO = ? 
 	</entry>
 	
-	
+		<!-- 게시글 등록 -->
+	<entry key="insertBoard">
+	INSERT INTO BOARD(BOARD_NO,BOARD_TITLE,BOARD_CONTENT,MEMBER_NO )
+	VALUES (SEQ_BOARD_NO.NEXTVAL,?,?,?) 
+	</entry>
+
+		<!-- 게시글 번호생성 -->
+	<entry key="nextBoardNo">
+	SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+	</entry>
+
 
 </properties>

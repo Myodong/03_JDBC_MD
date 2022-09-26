@@ -136,6 +136,36 @@ public class BoardService {
 		
 		return result;
 	}
+
+
+
+
+
+
+	/** 게시글 등록 서비스
+	 * @param board
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertBoard(Board board)throws Exception {
+		Connection conn = getConnection();
+
+		// 게시글 번호 생성 dao 호출
+		// 왜? 동시에 여러 사람이 게시글을 등록하면 
+		// 시퀀스가 한번에 증가하여 CURRVAL 구문을 이용하면 문제가 발생함
+		// -> 게시글 등록 서비스를 호출한 순서대로 
+		// 	  미리 게시글 번호를 생성해서 얻어온 다음 이를 이용해 insert 진행
+		
+		
+		int result = dao.insertBoard(conn, board);
+		
+		if (result > 0) commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
 	
 	
 	

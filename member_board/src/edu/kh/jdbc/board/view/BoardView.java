@@ -39,13 +39,13 @@ public class BoardView {
 				
 				System.out.print("\n메뉴 선택 : ");
 				input = sc.nextInt();
-				sc.hasNextLine(); // 입력 버퍼 개행 문자 제거
+				sc.nextLine(); // 입력 버퍼 개행 문자 제거
 				
 				System.out.println();
 				switch (input) {
 				case 1: selectAllBoard(); break; // 게시글 목록 조회
 				case 2: selectBoard(); 	  break; // 게시글 상세 조회
-				case 3: break;
+				case 3: insertBoard(); break; 	 // 게시글 등록(삽입)
 				case 4: break;
 				case 0: System.out.println("[메인 메뉴로 이동합니다.]"); break;
 				default: System.out.println("메뉴에 작성된 번호만 입력 해주세요.");
@@ -493,6 +493,50 @@ public class BoardView {
 		
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 게시글 등록(삽입)
+	 */
+	private void insertBoard() {
+		
+		try {
+			System.out.println("\n[게시글 등록]\n");
+			
+			System.out.print("제목 : ");
+			String boardTitle = sc.nextLine();
+			
+			System.out.println("내용 : ");
+			String boardContent = inputContent();
+			sc.next();
+			
+			// Board 객체에 제목, 내용, 회원 번호를 담아서 서비스에 전달 
+			Board board = new Board();
+			board.setBoardTitle(boardTitle);
+			board.setBoardContent(boardContent);
+			board.setMemberNo(MainView.loginMember.getMemberNo());
+			
+			int result = bService.insertBoard(board);
+			
+			if(result > 0) {
+				System.out.println("\n[게시글이 등록되었습니다.]\n");
+			} else {
+				System.out.println("\n[게시글이 등록 실패]\n");
+			}
+			
+			
+			
+		} catch (Exception e) {
+			System.out.println("\n<<게시글 등록 중 예외 발생>>\n");
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	

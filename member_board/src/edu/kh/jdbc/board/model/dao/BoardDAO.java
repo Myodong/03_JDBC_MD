@@ -220,6 +220,67 @@ public class BoardDAO {
 		
 		return result;
 	}
+
+
+
+
+	/** 게시글 등록 DAO
+	 * @param conn
+	 * @param board
+	 * @return result
+	 * @throws Exception
+	 */
+	public int insertBoard(Connection conn, Board board)throws Exception {
+		int result = 0 ;
+
+		try {
+			String sql = prop.getProperty("insertBoard");
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, board.getBoardTitle());
+			pstmt.setString(2, board.getBoardContent());
+			pstmt.setInt(3, board.getMemberNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+			
+		}
+		
+		
+		return result;
+	}
+
+
+
+
+	/** 다음 게시글 번호 생성 DAO
+	 * @param conn
+	 * @return boardNo
+	 * @throws Exception
+	 */
+	public int nextBoardNo(Connection conn)throws Exception {
+		int boardNo =0;
+		
+		try {
+			String sql = prop.getProperty("nextBoardNo");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) { // 조회 결과 1행 밖에 없음
+				boardNo = rs.getInt(1); // 첫 번째 컬럼값을 얻어와 boardNo 에 저장
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return boardNo;
+	}
 	
 	
 	
