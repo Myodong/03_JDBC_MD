@@ -3,16 +3,61 @@
 <properties>
 	<comment>client-query.xml file</comment>
 
-			<!-- 주민번호 중복 검사 -->
+		<!-- 주민번호 중복 검사 -->
 	<entry key="ssnCheck">
 		SELECT COUNT(*) FROM FMS_CLIENT
 		WHERE CLIENT_SSN = ?
 	</entry>
 	
-			<!-- 고객 등록 -->
+		<!-- 고객 등록 -->
 	<entry key="registration">
 	INSERT INTO FMS_CLIENT
 	VALUES(SEQ_CLIENT_NO.NEXTVAL, ?,?,?,?,DEFAULT)
 	</entry>
 
+
+		<!-- 고객 삭제-->
+	<entry key="secession">
+	UPDATE FMS_CLIENT SET
+	CLIENT_FL  = 'Y'	
+	WHERE CLIENT_NO = ? 
+	</entry>
+	
+	
+		<!-- 고객 목록 조회 -->
+	<entry key="selectAll">
+	SELECT *
+	FROM FMS_CLIENT
+	WHERE CLIENT_FL ='N'
+	ORDER BY CLIENT_NO  DESC
+	</entry>
+	
+		<!-- 고객 정보수정 고유번호 검사 -->
+	<entry key="noCheck">
+		SELECT COUNT(*) FROM FMS_CLIENT
+		WHERE CLIENT_NO = ?
+	</entry>
+	
+	
+		<!-- 고객 수정 이름 -->	
+	<entry key="updatName">
+	UPDATE FMS_CLIENT  SET
+	CLIENT_NM  = ?	
+	WHERE CLIENT_NO = ? 
+	</entry>
+	
+		<!-- 고객 수정 전화번호  -->	
+	<entry key="updatPho">
+	UPDATE FMS_CLIENT  SET
+	CLIENT_PHO  = ?	
+	WHERE CLIENT_NO = ? 
+	</entry>
+	
+		<!-- 고객 수정 주소 -->	
+	<entry key="updatAddress">
+	UPDATE FMS_CLIENT  SET
+	CLIENT_ADDRESS  = ?	
+	WHERE CLIENT_NO = ? 
+	</entry>
+	
 </properties>

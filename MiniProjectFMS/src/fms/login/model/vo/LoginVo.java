@@ -12,6 +12,10 @@ public class LoginVo {
 	private String memberStore;		// 담당매장
 	private String enrollDate;		// 회원가입일
 
+
+	
+	
+	
 	public LoginVo() {	}
 	
 	
@@ -31,12 +35,6 @@ public class LoginVo {
 
 
 
-
-
-
-
-
-
 	public LoginVo(int memberNo, String memberId, String memberName, String enrollDate) {
 		super();
 		this.memberNo = memberNo;
@@ -44,6 +42,11 @@ public class LoginVo {
 		this.memberName = memberName;
 		this.enrollDate = enrollDate;
 	}
+
+
+
+
+
 
 
 
@@ -102,7 +105,9 @@ public class LoginVo {
 	public void setEnrollDate(String enrollDate) {
 		this.enrollDate = enrollDate;
 	}
-	
+
+
+
 	
 	
 	

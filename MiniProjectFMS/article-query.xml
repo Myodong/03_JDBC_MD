@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>article-query.xml file</comment>
+	
+	<!-- 물품 등록 -->
+	<entry key="registration">
+	INSERT INTO FMS_ARTICLE
+	VALUES(SEQ_ARTICLE_NO.NEXTVAL, ?,?,?,
+	TO_DATE(?,'YYYY-MM-DD'),
+	TO_DATE(?,'YYYY-MM-DD'),
+	DEFAULT, null, ?, null,DEFAULT)
+	</entry>
+	
+	<!-- 물품 삭제 -->
+	<entry key="delete">
+	DELETE FROM FMS_ARTICLE
+	WHERE ARTICLE_NO = ?
+	</entry>
+	
+	<!-- 물품 재고 조회 -->
+	<entry key="stockAll">
+	SELECT ARTICLE_NO,ARTICLE_NM,ARTICLE_QUANTITY,ARTICLE_UNIT,
+	TO_CHAR(ARTICLE_SL, 'YYYY-MM-DD')ARTICLE_SL,
+	TO_CHAR(ARTICLE_DOM, 'YYYY-MM-DD')ARTICLE_DOM,
+	TO_CHAR(ARTICLE_RD, 'YYYY-MM-DD')ARTICLE_RD,MEMBER_NM,MEMBER_STORE
+	FROM FMS_ARTICLE
+	JOIN FMS_MEMBER USING (MEMBER_NO)
+	ORDER BY ARTICLE_NO 
+	</entry>
+	
+	<!-- 물품 정보 수정 (물품번호 검사) -->
+	<entry key="noCheck">
+	SELECT COUNT(*) FROM FMS_ARTICLE
+	WHERE ARTICLE_NO = ?
+	</entry>
+	
+	<!-- 물품 정보 수정 (물품 명칭) -->	
+	<entry key="updatName">
+	UPDATE FMS_ARTICLE  SET
+	ARTICLE_NM  = ?	
+	WHERE ARTICLE_NO = ? 
+	</entry>
+	
+	<!-- 물품 정보 수정  (물품 수량,단위) -->	
+	<entry key="updatQuantity">
+	UPDATE FMS_ARTICLE  SET
+	ARTICLE_QUANTITY  = ?,
+	ARTICLE_UNIT = ?
+	WHERE ARTICLE_NO = ? 
+	</entry>
+	
+	
+	<!-- 물품 정보 수정  (물품 유통기한) -->	
+	<entry key="updatSl">
+	UPDATE FMS_ARTICLE  SET
+	ARTICLE_SL  = TO_DATE(?,'YYYY-MM-DD')
+	WHERE ARTICLE_NO = ? 
+	</entry>
+	
+	<!-- 물품 정보 수정 (물품 제조일자) -->	
+	<entry key="updatDom">
+	UPDATE FMS_ARTICLE  SET
+	ARTICLE_DOM  = TO_DATE(?, 'YYYY-MM-DD')
+	WHERE ARTICLE_NO = ?
+	</entry>
+	
+	
+	<!-- 물품 제공등록 (등록 매장 확인) -->
+	<entry key="storeCheck">
+	SELECT COUNT(*)
+	FROM FMS_ARTICLE
+	JOIN FMS_MEMBER USING (MEMBER_NO)
+	WHERE  ARTICLE_NO = ?
+	AND MEMBER_STORE = (SELECT MEMBER_STORE FROM FMS_MEMBER
+					 WHERE MEMBER_NO = ?)
+	</entry>
+	
+	
+	
+	
+	<!-- 물품 제공등록(재고 수량 감소)  -->
+	<entry key="offeredRegistration">
+	UPDATE FMS_ARTICLE  SET
+	ARTICLE_QUANTITY  = (ARTICLE_QUANTITY -?)	
+	WHERE ARTICLE_QUANTITY > 0 		
+	AND ARTICLE_NO = ?
+	</entry>
+	
+	<!-- 물품 제공등록(고객 수량 증가)  -->
+	<entry key="clientOffered">
+	UPDATE FMS_ARTICLE  SET
+	ARTICLE_OFFER  = (ARTICLE_OFFER +?)
+	WHERE ARTICLE_NO = ?		
+	</entry>
+	
+	
+		<!-- 물품 제공등록 (제공일자 등록)  -->
+	<entry key="OfferedDd">
+	UPDATE FMS_ARTICLE  SET
+	ARTICLE_DD  = SYSDATE
+	WHERE ARTICLE_NO = ?	
+	</entry>
+	
+	
+	<!-- 고객 번호 확인  -->
+	<entry key="cnoCheck">
+		SELECT COUNT(*) FROM FMS_CLIENT
+		WHERE CLIENT_NO = ?
+	</entry>
+	
+	
+	<!-- 물품 제공현황  -->
+	<entry key="offeredselectAll">
+		SELECT ARTICLE_NO, ARTICLE_NM, ARTICLE_OFFER,
+	ARTICLE_UNIT,ARTICLE_SL,ARTICLE_DOM,ARTICLE_DD,MEMBER_STORE
+	FROM FMS_ARTICLE
+	LEFT JOIN FMS_CLIENT USING (CLIENT_NO)
+	LEFT JOIN FMS_MEMBER USING (MEMBER_NO)
+	WHERE ARTICLE_OFFER > 0
+	</entry>
+	
+	
+</properties>

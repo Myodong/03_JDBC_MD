@@ -3,6 +3,7 @@ package fms.login.view;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import fms.article.view.ArticleView;
 import fms.client.view.ClientView;
 import fms.login.model.service.LoginService;
 import fms.login.model.vo.LoginVo;
@@ -16,6 +17,8 @@ public class LoginView {
 	
 	// 고객 관리 메뉴 객체 생성
 	private ClientView clientView = new ClientView();
+	
+	private ArticleView articleView = new ArticleView();
 	
 	
 	// 로그인된 회원 정보를 저장한 객체를 참조하는 참조변수
@@ -70,7 +73,7 @@ public class LoginView {
 					
 					switch (input) {
 					case 1: clientView.clientMeun(loginMember); break;// 고객 관리
-					case 2: break; // 물품 관리
+					case 2: articleView.articleMeun(loginMember); break; // 물품 관리
 // 시간나면구현 	case 3: break; // 매장 관리
 					case 0: loginMember = null;
 					System.out.println("\n[-] 로그아웃 되었습니다.\n");
