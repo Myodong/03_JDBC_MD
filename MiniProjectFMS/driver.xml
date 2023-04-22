@@ -8,7 +8,7 @@
 	<!-- entry : K : V 한 쌍 -->
 	<entry key="driver">oracle.jdbc.driver.OracleDriver</entry>
 	
-	<entry key="url">jdbc:oracle:thin:@localhost:59011:xe</entry>
+	<entry key="url">jdbc:oracle:thin:@localhost:49699:XE</entry>
 	
 	<entry key="user">kh_khd</entry>
 	
